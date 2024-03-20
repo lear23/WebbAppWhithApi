@@ -1,0 +1,6 @@
+@WebAppApi_HostAddress = https://localhost
+
+GET {{WebAppApi_HostAddress}}/api/users
+Accept: application/json
+
+###
