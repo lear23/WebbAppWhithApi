@@ -1,11 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using SiliconWebApp.ViewModels.Courses;
 
 namespace SiliconWebApp.Controllers;
 
-public class CoursesController : Controller
+//[Authorize]
+
+public class CoursesController(HttpClient httpClient) : Controller
 {
-    public IActionResult Courses()
+    private readonly HttpClient _httpClient = httpClient;
+
+
+    public async Task<IActionResult> Courses()
     {
-        return View();
+        var viewModel = new CoursesViewModel();
+
+
+        var response = await _httpClient.GetAsync("https://localhost:7071/api/courses");
+      
+
+        viewModel.CourseModels = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(await response.Content.ReadAsStringAsync())!;
+
+        return View(viewModel);
     }
 }

@@ -1,8 +1,10 @@
-﻿@{
+﻿@model CoursesViewModel
+
+
+@{
     ViewData["Title"] = "Courses";
 }
 <link rel="stylesheet" href="~/css/Courses.css" asp-append-version="true" />
-
 
 
  <section class="coursesList">
@@ -25,26 +27,50 @@
 <section class="chooseCourses">
     <div class="container">
         <div class="container-cards">
-            <div class="cardCourses">
-                <img class="cardImage" src="~/Images/image (1).svg" alt="">
-                <img class="courseIcon" src="~/Images/S.svg" alt="">
-                <img class="bestSeller" src="~/Images/badge.png" alt="">
-                <div class="cardText">
-                    <h5>Fullstack Web Developer Course from Scratch</h5>
-                    <p class="text-s">By Robert Fox</p>
-                    <span class="blue">$12.50</span>
-                    <hr>
-                    <div class="watch">
-                        <div class="hours">
-                            <p class="text-s"><img src="~/Images/bx-time-five.svg" alt="">160 hours</p>
+            @if (Model.CourseModels != null)
+            {
+                @foreach (var item in Model.CourseModels)
+                {
+                    @if (item != null)
+                    {
+                        @if (item.IsBestSeller)
+                        {
+                            <div class="bestSeller">Best Seller</div>
+                        }
+                        <div class="cardCourses">
+                            <img class="cardImage" src="~/Images/@item.ImageName" alt="">
+                            <img class="courseIcon" src="~/Images/S.svg" alt="">
+
+                            <div class="cardText">
+                                <h5>@item.Title</h5>
+                                <p class="text-s">@item.Author</p>
+                                <span class="blue">${@item.Price}</span>
+                                <span class="red">${@item.Discount}</span>
+                                <hr>
+                                <div class="watch">
+                                    <div class="hours">
+                                        <p class="text-s"><img src="~/Images/bx-time-five.svg" alt="">@item.Hours hours</p>
+                                    </div>
+                                    <div class="likes">
+                                        <i class="fa-regular fa-thums-up"></i>
+                                        <span>@($"{item.LikesProcent * 100}%")</span>
+                                        <span>(@($"{item.LikesNumbers * 1000}k"))</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="likes">
-                            <p class="text-s"><img src="~/Images/like.svg" alt=""> 92%(3.1K)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="cardCourses">
+                    }
+                }
+            }
+
+           
+            @* <p class="text-s">
+                <img src="~/Images/like.svg" alt="">
+            </p> *@
+                @* <img class="bestSeller" src="~/Images/badge.png" alt=""> *@
+        </div>
+    </div>
+@*             <div class="cardCourses">
                 <img class="cardImage" src="~/Images/image (2).svg" alt="">
                 <img class="courseIcon" src="~/Images/S.svg" alt="">
                 <div class="cardText">
@@ -141,7 +167,7 @@
                 <div class="cardText">
                     <h5>Blender Character Creator v2.0 for Video Games Design</h5>
                     <p class="text-s">By Ralph Edwards</p>
-                    <span class="blue">$18-99</span>
+                    <span class="blue">$18,99</span>
                     <hr>
                     <div class="watch">
                         <div class="hours">
@@ -188,7 +214,7 @@
                         </div>
                     </div>
                 </div>
-            </div>     
+            </div>      *@
      
 
 </section>
@@ -206,3 +232,36 @@
         </div>
     </div>
 </section> 
+
+
+@* 
+
+@foreach (var item in Model.CourseModels)
+{
+    @if (item.IsBestSeller)
+    {
+        <div class="bestSeller">Best Seller</div>
+    }
+    <div class="cardCourses">
+        <img class="cardImage" src="~/Images/@item.ImageName" alt="">
+        <img class="courseIcon" src="~/Images/S.svg" alt="">
+
+        <div class="cardText">
+            <h5>@item.Title</h5>
+            <p class="text-s">@item.Author</p>
+            <span class="blue">${@item.Price}</span>
+            <span class="red">${@item.Discount}</span>
+            <hr>
+            <div class="watch">
+                <div class="hours">
+                    <p class="text-s"><img src="~/Images/bx-time-five.svg" alt="">@item.Hours hours</p>
+                </div>
+                <div class="likes">
+                    <i class="fa-regular fa-thums-up"></i>
+                    <span>@($"{item.LikesProcent * 100}%")</span>
+                    <span>(@($"{item.LikesNumbers * 1000}k"))</span>
+                </div>
+            </div>
+        </div>
+    </div>
+} *@

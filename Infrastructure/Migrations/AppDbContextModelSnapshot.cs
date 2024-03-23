@@ -58,32 +58,32 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Entities.CourseEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discount")
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Hours")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Hours")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsBestSeller")
+                    b.Property<bool>("IsBestSeller")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LikesNumbers")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("LikesNumbers")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("LikesProcent")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("LikesProcent")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -96,11 +96,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Entities.SubscriberEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .IsRequired()
