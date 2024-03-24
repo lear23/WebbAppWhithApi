@@ -407,7 +407,15 @@ a {
 .red {
     color: red;
 }
-
 .gray {
     color: rgb(215, 215, 215);
+    text-decoration: underline;
+    text-decoration-color: rgb(215, 215, 215);
+    text-decoration-style: solid;
 }
+
+
+/*.gray {
+    color: rgb(215, 215, 215);
+}
+*/
